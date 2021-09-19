@@ -1,0 +1,97 @@
+$fontSize: 1.5em;
+
+%centering {
+  display: inline-flex;
+  align-items: center;
+}
+
+.tagNoteEditor {
+  margin: 0 3vw;
+  text-align: center;
+
+  h1 {
+    font-size: 4em;
+    color: green;
+  }
+
+  h2 {
+    color: green;
+  }
+
+  .listOfTags {
+    margin: 10px;
+    @extend %centering;
+
+    .tag {
+      font-style: italic;
+      cursor: pointer;
+      font-size: $fontSize;
+      background-color: burlywood;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  }
+
+  form {
+    @extend %centering;
+
+    .inputField {
+      width: 300px;
+      height: 100px;
+      background-color: coral;
+    }
+    textarea {
+      width: 40vw;
+      height: 8vh;
+      font-size: $fontSize;
+      resize: none;
+      padding: 10px;
+    }
+
+    button {
+      font-size: $fontSize;
+      background-color: green;
+      border-radius: 10px;
+      color: white;
+      margin: 20px;
+      padding: 10px;
+    }
+  }
+
+  .lists {
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 5vw;
+    }
+
+    .close {
+      cursor: pointer;
+      padding: 3px;
+      font-size: $fontSize/2;
+    }
+
+    .note {
+      font-size: $fontSize;
+      margin: 15px 0 15px;
+      cursor: pointer;
+      text-align: start;
+    }
+
+    .noteDiv {
+      @extend %centering;
+      display: flex;
+    }
+
+    input {
+      font-size: $fontSize - 0.1em;
+      margin: 15px 0 15px;
+    }
+
+    .listOfNotes {
+      background-color: burlywood;
+      padding: 20px;
+      border-radius: 30px;
+    }
+  }
+}
