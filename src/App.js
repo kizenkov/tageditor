@@ -9,6 +9,7 @@ function App() {
     const [notes, setNotes] = useState(data.notes.map(el => el));
     const [currentNote, setCurrentNote] = useState('');
     const [sortedListByTag, setSortedListByTag] = useState([]);
+    const [lightTags, setLightTags] = useState([]);
 
     let addTag = (noteWithTag) => {
         let endPositionOfTag = noteWithTag.indexOf(' ', noteWithTag.indexOf('#'));
@@ -26,6 +27,22 @@ function App() {
             addTag(trimCurrentNote)
         }
         setCurrentNote('');
+        setLightTags([])
+    }
+
+    let checkNote = (e) => {
+        for (let i = 0; i < tags.length; i++) {
+            if (e.currentTarget.value.includes(tags[i])) {
+                if (!lightTags.includes(tags[i])) {
+                    setLightTags([...lightTags, tags[i]])
+                }
+            }
+        }
+        for (let i = 0; i < lightTags.length; i++) {
+            if (!e.currentTarget.value.includes(lightTags[i])) {
+                setLightTags(lightTags.slice().filter(el => e.currentTarget.value.includes(el)))
+            }
+        }
     }
 
     let changeNote = (oldNote, newNote) => {
@@ -65,9 +82,10 @@ function App() {
     }
 
     let noteList = notes.map((el, i) => <Note key={el} i={i + 1} note={el} deleteNote={deleteNote}
-                                              changeNote={changeNote} tags={tags}/>)
+                                              changeNote={changeNote}/>)
 
-    let tagList = tags.map(el => <Tag key={el} tag={el} filterNotesByTag={filterNotesByTag} deleteTag={deleteTag}/>)
+    let tagList = tags.map(el => <Tag key={el} tag={el} filterNotesByTag={filterNotesByTag} deleteTag={deleteTag}
+                                      light={lightTags.includes(el)}/>)
 
     let sortedList = sortedListByTag.map((el, i) => <div className='note' key={el}>{i + 1}. {el}</div>)
 
@@ -78,7 +96,11 @@ function App() {
                 <textarea autoFocus
                           value={currentNote}
                           placeholder='Enter new note'
-                          onChange={(e) => setCurrentNote(e.currentTarget.value)}/>
+                          onChange={(e) => {
+                              setCurrentNote(e.currentTarget.value)
+                              checkNote(e)
+                          }
+                          }/>
                 <button type='submit'>Create</button>
             </form>
             <div className='lists'>

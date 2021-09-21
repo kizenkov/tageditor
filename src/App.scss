@@ -30,6 +30,10 @@ $fontSize: 1.5em;
       padding: 5px;
       border-radius: 5px;
     }
+
+    .lightTag {
+      background-color: green;
+    }
   }
 
   form {
@@ -40,6 +44,7 @@ $fontSize: 1.5em;
       height: 100px;
       background-color: coral;
     }
+
     textarea {
       width: 40vw;
       height: 8vh;

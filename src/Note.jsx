@@ -20,7 +20,7 @@ const Note = ({note, deleteNote, changeNote, i}) => {
     return <div className='noteDiv'>
         {changingNote && <form onSubmit={saveNewNote}><input type='text' value={newNote} autoFocus={true}
                                                              onChange={changeTextNote}
-                                                             onBlur={saveNewNote} /></form>}
+                                                             onBlur={saveNewNote}/></form>}
         {!changingNote && <>
             <span className='note' onClick={() => setChangingNote(true)}>{i}. {note}</span>
             <span className='close' onClick={() => deleteNote(note)}>❌</span>
